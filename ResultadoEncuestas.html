@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualización de Datos JSON con Chart.js</title>
+   
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<header>
+    <nav>
+        <ul>
+        
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="graficas.html">Grafica sexos</a></li>
+        <li><a href="PorcentajeParticipacion.html">Publico encuestado</a></li>
+        <li><a href="ResultadoEncuestas.html">Resultado encuestas</a></li>
+        </ul>
+    </nav>
+</header>
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+     
+    <script>
+        const jsonData = [
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,M,22,4,5,3,2,1"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,F,20,3,4,4,3,2"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,M,23,5,5,5,4,5"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,F,21,2,3,4,4,3"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,M,24,4,4,3,3,4"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,F,22,5,4,5,3,3"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,M,20,3,3,2,4,4"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,F,25,4,5,5,5,5"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,M,21,4,3,4,4,4"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,F,23,5,4,3,2,1"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,M,22,3,5,4,4,3"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,F,20,4,4,5,3,2"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,M,24,5,5,4,4,5"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,F,21,3,3,4,5,4"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,M,25,4,4,3,3,4"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,F,22,5,4,5,3,3"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,M,20,3,5,4,4,3"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,F,24,4,4,3,3,4"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,M,21,5,4,5,3,3"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,F,23,3,3,2,4,4"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,M,22,4,5,3,2,1"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,F,20,3,4,4,3,2"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,M,23,5,5,5,4,5"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,F,21,2,3,4,4,3"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,M,24,4,4,3,3,4"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,M,22,4,5,3,2,1"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,F,20,3,4,4,3,2"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,M,23,5,5,5,4,5"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,F,21,2,3,4,4,3"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,M,24,4,4,3,3,4"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,F,22,5,4,5,3,3"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,M,20,3,3,2,4,4"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,F,25,4,5,5,5,5"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,M,21,4,3,4,4,4"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,F,23,5,4,3,2,1"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,M,22,3,5,4,4,3"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,F,20,4,4,3,2,1"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,M,24,5,5,4,4,5"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,F,21,3,3,4,4,3"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,M,25,4,4,3,2,1"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,F,22,5,4,5,3,3"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,M,20,2,3,4,4,3"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,F,23,3,4,5,3,2"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,M,21,4,5,4,2,1"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,F,24,5,4,3,4,3"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,M,22,3,3,2,5,4"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,ASIR,F,20,4,4,5,4,3"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,SMR,M,23,5,4,5,3,2"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Humanes,DAM,F,25,3,4,3,4,5"
+        },
+        {
+            "Centro,Grado,Sexo,Edad,Pregunta_1,Pregunta_2,Pregunta_3,Pregunta_4,Pregunta_5": "Getafe,DAW,M,21,4,5,4,3,2"
+        }
+        ];
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+
+        // Extracting votes from JSON data
+        const votes = jsonData.map(entry => {
+            const values = Object.values(entry)[0].split(',');
+            return values.slice(4).map(Number);
+        });
+
+        const totals = Array.from({ length: 5 }, () => Array(5).fill(0));
+        votes.forEach(vote => {
+            vote.forEach((value, index) => {
+                totals[index][value - 1]++;
+            });
+        });
+
+        const chartData = {
+            labels: ['1', '2', '3', '4', '5'],
+            datasets: [
+                { label: 'Pregunta 1', data: totals[0], backgroundColor: 'rgba(255, 99, 132, 0.2)', borderColor: 'rgba(255, 99, 132, 1)', borderWidth: 1 },
+                { label: 'Pregunta 2', data: totals[1], backgroundColor: 'rgba(54, 162, 235, 0.2)', borderColor: 'rgba(54, 162, 235, 1)', borderWidth: 1 },
+                { label: 'Pregunta 3', data: totals[2], backgroundColor: 'rgba(255, 206, 86, 0.2)', borderColor: 'rgba(255, 206, 86, 1)', borderWidth: 1 },
+                { label: 'Pregunta 4', data: totals[3], backgroundColor: 'rgba(75, 192, 192, 0.2)', borderColor: 'rgba(75, 192, 192, 1)', borderWidth: 1 },
+                { label: 'Pregunta 5', data: totals[4], backgroundColor: 'rgba(153, 102, 255, 0.2)', borderColor: 'rgba(153, 102, 255, 1)', borderWidth: 1 }
+            ]
+        };
+
+        const chartConfig = {
+            type: 'bar',
+            data: chartData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        new Chart(ctx, chartConfig);
+
+    </script>
+</body>
+</html>

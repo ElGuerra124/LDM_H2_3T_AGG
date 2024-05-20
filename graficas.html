@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>H2-3T-AGG</title>
+</head>
+<header>
+    <nav>
+        <ul>
+        
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="graficas.html">Grafica sexos</a></li>
+        <li><a href="PorcentajeParticipacion.html">Publico encuestado</a></li>
+        <li><a href="ResultadoEncuestas.html">Resultado encuestas</a></li>
+        </ul>
+    </nav>
+</header>
+<body>
+    <canvas id="age-sex-chart"></canvas>
+  <script>
+    const data = [
+    { "Centro": "Humanes", "Grado": "DAM", "Sexo": "M", "Edad": 22, "Pregunta_1": 4, "Pregunta_2": 5, "Pregunta_3": 3, "Pregunta_4": 2, "Pregunta_5": 1 },
+    { "Centro": "Getafe", "Grado": "DAW", "Sexo": "F", "Edad": 20, "Pregunta_1": 3, "Pregunta_2": 4, "Pregunta_3": 4, "Pregunta_4": 3, "Pregunta_5": 2 },
+    { "Centro": "Humanes", "Grado": "ASIR", "Sexo": "M", "Edad": 23, "Pregunta_1": 5, "Pregunta_2": 5, "Pregunta_3": 5, "Pregunta_4": 4, "Pregunta_5": 5 },
+    { "Centro": "Getafe", "Grado": "SMR", "Sexo": "F", "Edad": 21, "Pregunta_1": 2, "Pregunta_2": 3, "Pregunta_3": 4, "Pregunta_4": 4, "Pregunta_5": 3 },
+    { "Centro": "Humanes", "Grado": "DAM", "Sexo": "M", "Edad": 24, "Pregunta_1": 4, "Pregunta_2": 4, "Pregunta_3": 3, "Pregunta_4": 3, "Pregunta_5": 4 },
+    { "Centro": "Getafe", "Grado": "DAW", "Sexo": "F", "Edad": 22, "Pregunta_1": 5, "Pregunta_2": 4, "Pregunta_3": 5, "Pregunta_4": 3, "Pregunta_5": 3 },
+    { "Centro": "Humanes", "Grado": "ASIR", "Sexo": "M", "Edad": 20, "Pregunta_1": 3, "Pregunta_2": 3, "Pregunta_3": 2, "Pregunta_4": 4, "Pregunta_5": 4 },
+    { "Centro": "Getafe", "Grado": "SMR", "Sexo": "F", "Edad": 25, "Pregunta_1": 4, "Pregunta_2": 5, "Pregunta_3": 5, "Pregunta_4": 5, "Pregunta_5": 5 },
+    { "Centro": "Humanes", "Grado": "DAM", "Sexo": "M", "Edad": 21, "Pregunta_1": 4, "Pregunta_2": 3, "Pregunta_3": 4, "Pregunta_4": 4, "Pregunta_5": 4 },
+    { "Centro": "Getafe", "Grado": "DAW", "Sexo": "F", "Edad": 23, "Pregunta_1": 5, "Pregunta_2": 4, "Pregunta_3": 3, "Pregunta_4": 2, "Pregunta_5": 1 },
+    { "Centro": "Humanes", "Grado": "ASIR", "Sexo": "M", "Edad": 22, "Pregunta_1": 3, "Pregunta_2": 5, "Pregunta_3": 4, "Pregunta_4": 4, "Pregunta_5": 3 },
+    { "Centro": "Getafe", "Grado": "SMR", "Sexo": "F", "Edad": 20, "Pregunta_1": 4, "Pregunta_2": 4, "Pregunta_3": 5, "Pregunta_4": 3, "Pregunta_5": 2 },
+    { "Centro": "Humanes", "Grado": "DAM", "Sexo": "M", "Edad": 24, "Pregunta_1": 5, "Pregunta_2": 5, "Pregunta_3": 4, "Pregunta_4": 4, "Pregunta_5": 5 },
+    { "Centro": "Getafe", "Grado": "DAW", "Sexo": "F", "Edad": 21, "Pregunta_1": 3, "Pregunta_2": 3, "Pregunta_3": 4, "Pregunta_4": 5, "Pregunta_5": 4 },
+    { "Centro": "Humanes", "Grado": "ASIR", "Sexo": "M", "Edad": 25, "Pregunta_1": 4, "Pregunta_2": 4, "Pregunta_3": 3, "Pregunta_4": 3, "Pregunta_5": 4 },
+    { "Centro": "Getafe", "Grado": "SMR", "Sexo": "F", "Edad": 22, "Pregunta_1": 5, "Pregunta_2": 4, "Pregunta_3": 5, "Pregunta_4": 3, "Pregunta_5": 3 },
+    { "Centro": "Humanes", "Grado": "DAM", "Sexo": "M", "Edad": 20, "Pregunta_1": 3, "Pregunta_2": 5, "Pregunta_3": 4, "Pregunta_4": 4, "Pregunta_5": 3 },
+    { "Centro": "Getafe", "Grado": "DAW", "Sexo": "M", "Edad": 24, "Pregunta_1": 4, "Pregunta_2": 4, "Pregunta_3": 3, "Pregunta_4": 3, "Pregunta_5": 4 },
+    { "Centro": "Humanes", "Grado": "ASIR", "Sexo": "F", "Edad": 21, "Pregunta_1": 5, "Pregunta_2": 4, "Pregunta_3": 5, "Pregunta_4": 3, "Pregunta_5": 3 },
+    { "Centro": "Getafe", "Grado": "SMR", "Sexo": "M", "Edad": 23, "Pregunta_1": 3, "Pregunta_2": 3, "Pregunta_3": 2, "Pregunta_4": 4, "Pregunta_5": 4 },
+    { "Centro": "Humanes", "Grado": "DAM", "Sexo": "M", "Edad": 22, "Pregunta_1": 4, "Pregunta_2": 5, "Pregunta_3": 3, "Pregunta_4": 2, "Pregunta_5": 1 },
+    { "Centro": "Getafe", "Grado": "DAW", "Sexo": "F", "Edad": 20, "Pregunta_1": 3, "Pregunta_2": 4, "Pregunta_3": 4, "Pregunta_4": 3, "Pregunta_5": 2 },
+    { "Centro": "Humanes", "Grado": "ASIR", "Sexo": "M", "Edad": 23, "Pregunta_1": 5, "Pregunta_2": 5, "Pregunta_3": 5, "Pregunta_4": 4, "Pregunta_5": 5 },
+    { "Centro": "Getafe", "Grado": "SMR", "Sexo": "F", "Edad": 21, "Pregunta_1": 2, "Pregunta_2": 3, "Pregunta_3": 4, "Pregunta_4": 4, "Pregunta_5": 3 },
+    { "Centro": "Humanes", "Grado": "DAM", "Sexo": "M", "Edad": 24, "Pregunta_1": 4, "Pregunta_2": 4, "Pregunta_3": 3, "Pregunta_4": 3, "Pregunta_5": 4 },
+    { "Centro": "Getafe", "Grado": "DAW", "Sexo": "M", "Edad": 22, "Pregunta_1": 4, "Pregunta_2": 5, "Pregunta_3": 3, "Pregunta_4": 2, "Pregunta_5": 1 },
+    { "Centro": "Humanes", "Grado": "ASIR", "Sexo": "F", "Edad": 20, "Pregunta_1": 3, "Pregunta_2": 4, "Pregunta_3": 4, "Pregunta_4": 3, "Pregunta_5": 2 },
+    { "Centro": "Getafe", "Grado": "SMR", "Sexo": "M", "Edad": 23, "Pregunta_1": 5, "Pregunta_2": 5, "Pregunta_3": 5, "Pregunta_4": 4, "Pregunta_5": 5 },
+    { "Centro": "Humanes", "Grado": "DAM", "Sexo": "F", "Edad": 21, "Pregunta_1": 2, "Pregunta_2": 3, "Pregunta_3": 4, "Pregunta_4": 4, "Pregunta_5": 3 },
+    { "Centro": "Getafe", "Grado": "DAW", "Sexo": "M", "Edad": 24, "Pregunta_1": 4, "Pregunta_2": 4, "Pregunta_3": 3, "Pregunta_4": 3, "Pregunta_5": 4 },
+    { "Centro": "Humanes", "Grado": "ASIR", "Sexo": "F", "Edad": 22, "Pregunta_1": 5, "Pregunta_2": 4, "Pregunta_3": 5, "Pregunta_4": 3, "Pregunta_5": 3 },
+    { "Centro": "Getafe", "Grado": "SMR", "Sexo": "M", "Edad": 20, "Pregunta_1": 3, "Pregunta_2": 3, "Pregunta_3": 2, "Pregunta_4": 4, "Pregunta_5": 4 },
+    { "Centro": "Humanes", "Grado": "DAM", "Sexo": "F", "Edad": 25, "Pregunta_1": 4, "Pregunta_2": 5, "Pregunta_3": 5, "Pregunta_4": 5, "Pregunta_5": 5 },
+    { "Centro": "Getafe", "Grado": "DAW", "Sexo": "M", "Edad": 21, "Pregunta_1": 4, "Pregunta_2": 3, "Pregunta_3": 4, "Pregunta_4": 4, "Pregunta_5": 4 }
+];
+
+
+    const maleAges = data.filter(entry => entry.Sexo === 'M').map(entry => entry.Edad);
+    const femaleAges = data.filter(entry => entry.Sexo === 'F').map(entry => entry.Edad);
+
+    const maleAgeCount = {};
+    const femaleAgeCount = {};
+
+    maleAges.forEach(age => {
+        maleAgeCount[age] = (maleAgeCount[age] || 0) + 1;
+    });
+
+    femaleAges.forEach(age => {
+        femaleAgeCount[age] = (femaleAgeCount[age] || 0) + 1;
+    });
+
+    const uniqueAges = Array.from(new Set([...maleAges, ...femaleAges]));
+    const maleCounts = uniqueAges.map(age => maleAgeCount[age] || 0);
+    const femaleCounts = uniqueAges.map(age => femaleAgeCount[age] || 0);
+
+    const ctx = document.getElementById('age-sex-chart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: uniqueAges.map(String), // Edades como etiquetas
+            datasets: [{
+                label: 'Hombres',
+                data: maleCounts,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderWidth: 1
+            }, {
+                label: 'Mujeres',
+                data: femaleCounts,
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+  </script>
+  <SCript src="encuesta.js"></SCript>
+</body>
+</html>
